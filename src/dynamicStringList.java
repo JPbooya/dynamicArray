@@ -1,6 +1,12 @@
 public class dynamicStringList implements StringList {
-  String[] arr = new String[5];
-  int sizeCount = 0;
+
+  String[] arr;
+  int sizeCount;
+
+  public dynamicStringList(String[] arr){
+    this.arr = arr;
+    sizeCount = 0;
+  }
 
   public String get(int index) {
     if (index < 0 || index >= arr.length) {
