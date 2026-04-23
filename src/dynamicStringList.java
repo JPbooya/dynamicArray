@@ -38,7 +38,12 @@ public class dynamicStringList implements StringList {
 
     return removed;
   }
+
   public int size() {
     return sizeCount;
+  }
+
+  public int capacity() {
+    return arr.length;
   }
 }
