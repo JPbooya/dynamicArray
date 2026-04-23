@@ -103,4 +103,40 @@ class dynamicStringListTest {
     assertEquals("Hey", actual);
     assertEquals("Hi", constructor.get(1));
   }
+
+  @Test void testForSizeAfterAdding() {
+    dynamicStringList constructor = new dynamicStringList(new String[3]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+    constructor.add("Hi");
+
+    int actual = constructor.size();
+
+    assertEquals(3, actual);
+  }
+
+  @Test void testForSizeBeforeRemoving() {
+     dynamicStringList constructor = new dynamicStringList(new String[3]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+    constructor.add("Hi");
+
+    constructor.remove(2);
+
+    int actual = constructor.size();
+
+    assertEquals(2, actual);
+  }
+
+  @Test void testForCapacitiyAfterMax() {
+    dynamicStringList constructor = new dynamicStringList(new String[3]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+    constructor.add("Hi");
+    constructor.add("bye");
+
+    int actual = constructor.capacity();
+
+    assertEquals(6, actual);
+  }
 }
