@@ -18,5 +18,9 @@ public class dynamicStringList implements StringList {
     arr[index] = value;
   }
 
+  public void add(String value) {
+    arr[sizeCount] = value;
+    sizeCount++;
+  }
 
 }
