@@ -3,23 +3,104 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class dynamicStringListTest {
   @Test
-  void testForGet() {
-
+  void testForGetMethod() {
     dynamicStringList constructor = new dynamicStringList(new String[3]);
-    constructor.arr[2] = "Hello";
+    constructor.arr[0] = "Hello";
 
-    String actual = constructor.get(2);
+    String actual = constructor.get(0);
 
-    assertEquals(actual, "Hello");
+    assertEquals("Hello", actual);
   }
 
-  @Test void testForgetOutOfBounds() {
-    
+  @Test 
+  void testForGetMethodIfIndexIsOutOfBounds() {
     dynamicStringList constructor = new dynamicStringList(new String[3]);
-    constructor.arr[2] = "Hello";
+    constructor.arr[0] = "Hello";
 
     assertThrows(IndexOutOfBoundsException.class, () -> {
-      constructor.get(5);
+      constructor.get(3);
     });
+  }
+
+  @Test
+  void testForAddMethod() {
+    dynamicStringList constructor = new dynamicStringList(new String[5]);
+
+    constructor.add("Hello");
+
+    String actual = constructor.get(0);
+
+    assertEquals("Hello", actual);
+  }
+
+  @Test
+  void testForAddMethodButArrayReachesMaxCapacity() {
+    dynamicStringList constructor = new dynamicStringList(new String[3]);
+    constructor.add("Hello"); constructor.add("Hi");
+    constructor.add("Hey"); constructor.add("Greetings");
+
+    String actual = constructor.get(3);
+
+    assertEquals("Greetings", actual);
+  }
+
+  @Test
+  void testForSetMethod() {
+    dynamicStringList constructor = new dynamicStringList(new String[5]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+
+    constructor.set(1, "Hi");
+    String actual = constructor.get(1);
+
+    assertEquals("Hi", actual);
+  }
+
+  @Test
+  void testForSetMethodIfIndexIsOutOfBounds() {
+    dynamicStringList constructor = new dynamicStringList(new String[2]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+
+    assertThrows(IndexOutOfBoundsException.class, () -> {
+      constructor.set(2, "Hi");
+    });
+  }
+
+  @Test
+  void testForRemoveMethod() {
+    dynamicStringList constructor = new dynamicStringList(new String[3]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+    constructor.add("Hi");
+
+    String actual = constructor.remove(2);
+
+    assertEquals("Hi", actual);
+  }
+
+  @Test
+  void testForRemoveMethodIfIndexIsOutOfBounds() {
+    dynamicStringList constructor = new dynamicStringList(new String[4]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+    constructor.add("Hi");
+
+    assertThrows(IndexOutOfBoundsException.class, () -> {
+      constructor.remove(-1);
+    });
+  }
+
+  @Test 
+  void testForRemoveMethodIfRemoveFromTheMiddle() {
+    dynamicStringList constructor = new dynamicStringList(new String[3]);
+    constructor.add("Hello");
+    constructor.add("Hey");
+    constructor.add("Hi");
+
+    String actual = constructor.remove(1);
+
+    assertEquals("Hey", actual);
+    assertEquals("Hi", constructor.get(1));
   }
 }

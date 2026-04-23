@@ -25,6 +25,14 @@ public class dynamicStringList implements StringList {
   }
 
   public void add(String value) {
+    if (sizeCount == arr.length) {
+      String[] arrCopy = new String[arr.length*2];
+      for (int i = 0; i < sizeCount; i++) {
+        arrCopy[i] = arr[i];
+      }
+      arr = arrCopy;
+    }
+
     arr[sizeCount] = value;
     sizeCount++;
   }
@@ -37,7 +45,7 @@ public class dynamicStringList implements StringList {
     String removed = arr[index];
 
     for (int i = sizeCount; i > index; i--) {
-      arr[sizeCount - 1] = arr[sizeCount - 2];
+      arr[sizeCount - 2] = arr[sizeCount - 1];
     }
 
     sizeCount--;
