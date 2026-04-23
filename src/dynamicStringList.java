@@ -23,4 +23,20 @@ public class dynamicStringList implements StringList {
     sizeCount++;
   }
 
+  public String remove(int index) {
+    if (index < 0 || index >= arr.length) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    String removed = arr[index];
+
+    for (int i = sizeCount; i > index; i--) {
+      arr[sizeCount - 1] = arr[sizeCount - 2];
+    }
+
+    sizeCount--;
+
+    return removed;
+  }
+
 }
